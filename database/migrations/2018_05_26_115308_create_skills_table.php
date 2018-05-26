@@ -24,6 +24,12 @@ class CreateSkillsTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
+        Schema::create('challenge_skill', function (Blueprint $table) {
+            $table->unsignedInteger('challenge_id')->nullable();
+            $table->foreign('challenge_id')->references('id')->on('challenges');
+            $table->unsignedInteger('skill_id')->nullable();
+            $table->foreign('skill_id')->references('id')->on('skills');
+        });
     }
 
     /**

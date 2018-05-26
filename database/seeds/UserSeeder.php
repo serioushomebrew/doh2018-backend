@@ -46,17 +46,28 @@ class UserSeeder extends Seeder
         ]);
         /** @var \App\User $hacker */
         $hacker = factory(\App\User::class)->create([
-            'type'        => \App\User::TYPE_HACKER,
-            'points'      => 210,
-            'name'        => 'Hacker 2',
-            'description' => 'Developer at Bits of Freedom',
-            'email'       => 'hacker2@doh.nl',
-            'latitude'    => 52.056500,
-            'longitude'   => 4.504377,
+            'type'      => \App\User::TYPE_HACKER,
+            'points'    => 210,
+            'name'      => 'Hacker 2',
+            'email'     => 'hacker2@doh.nl',
+            'latitude'  => 52.056500,
+            'longitude' => 4.504377,
         ]);
         $hacker->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DNS'])->id,
-            \App\Skill::query()->firstOrCreate(['name' => 'DDOS attacks'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'Wordpress'])->id,
+        ]);
+
+        /** @var \App\User $adviser */
+        $adviser = factory(\App\User::class)->create([
+            'type'        => \App\User::TYPE_ADVISER,
+            'name'        => 'Jane',
+            'email'       => 'jane@doh.nl',
+            'description' => 'Developer at Bits of Freedom',
+        ]);
+        $adviser->skills()->sync([
+            \App\Skill::query()->firstOrCreate(['name' => 'Privacy'])->id,
         ]);
     }
 }
