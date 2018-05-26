@@ -18,6 +18,7 @@ use Illuminate\Support\Collection;
  * @property string                 name
  * @property string                 description
  * @property string                 email
+ * @property string                 api_token
  * @property Skill[]|Collection     skills
  * @property Challenge[]|Collection challenges
  */
@@ -43,6 +44,7 @@ class User extends Authenticatable
         'password',
         'latitude',
         'longitude',
+        'api_token',
     ];
 
     /** @var array */
