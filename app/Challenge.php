@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Class Challenge
  *
  * @package App
+ * @property integer      id
+ * @property integer|null user_id
+ * @property user|null    user
  * @property string       name
  * @property string       description
  * @property integer|null level_id
@@ -18,9 +21,10 @@ class Challenge extends Model
 {
     /** @var array */
     protected $fillable = [
+        'level_id',
+        'user_id',
         'name',
         'description',
-        'level_id',
     ];
 
     // region RELATIONSHIPS  
