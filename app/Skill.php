@@ -10,9 +10,10 @@ use Illuminate\Support\Collection;
  * Class Skill
  *
  * @package App
- * @property integer           id
- * @property string            name
- * @property User[]|Collection users
+ * @property integer                id
+ * @property string                 name
+ * @property User[]|Collection      users
+ * @property Challenge[]|Collection challenge
  */
 class Skill extends Model
 {
@@ -29,6 +30,14 @@ class Skill extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function challenges(): BelongsToMany
+    {
+        return $this->belongsToMany(Challenge::class);
     }
 
     // endregion
