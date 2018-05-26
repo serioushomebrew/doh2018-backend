@@ -7,6 +7,22 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+/*
+|--------------------------------------------------------------------------
+| Accept all Options requests.
+|--------------------------------------------------------------------------
+|
+| Make sure OPTIONS requests are always successfully completed.
+|
+*/
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE');
+    header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, Authorization, X-Socket-ID');
+    fastcgi_finish_request();
+    exit;
+}
+
 define('LARAVEL_START', microtime(true));
 
 /*
