@@ -18,7 +18,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE');
-    header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, Authorization, X-Socket-ID, X-Role');
+    header('Access-Control-Allow-Headers: *');
     fastcgi_finish_request();
     exit;
 }
