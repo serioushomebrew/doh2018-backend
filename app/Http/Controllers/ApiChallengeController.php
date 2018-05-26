@@ -36,6 +36,7 @@ class ApiChallengeController extends Controller
 
         $ac = new AddressesController;
         $latLong = $ac->checkZipcode($challenge->postal_code, $challenge->house_number);
+        dd($latLong);
         $challenge->latitude = $latLong['lat'];
         $challenge->longitude = $latLong['long'];
         $challenge->save();
