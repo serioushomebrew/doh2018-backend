@@ -136,8 +136,6 @@ class PolitieApiController extends Controller
 
         curl_close($curl);
 
-        dump($this->endpoint . '/' . $this->apiVersion . '/' . $url . '?' . http_build_query($arguments), $arguments);
-
         return collect(json_decode($response,true));
     }
 }
