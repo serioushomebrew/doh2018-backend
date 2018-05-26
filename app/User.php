@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -31,7 +32,6 @@ class User extends Authenticatable
         self::TYPE_ADVISER,
     ];
 
-
     /** @var array */
     protected $fillable = [
         'points',
@@ -60,6 +60,15 @@ class User extends Authenticatable
     // endregion
 
     // region SCOPES  
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeHackers(Builder $builder): Builder
+    {
+        return $builder->where('type', self::TYPE_HACKER);
+    }
 
     // endregion
 

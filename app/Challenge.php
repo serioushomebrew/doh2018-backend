@@ -4,20 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
  * Class Challenge
  *
  * @package App
- * @property integer      id
- * @property integer|null user_id
- * @property user|null    user
- * @property string       name
- * @property string       description
- * @property integer|null level_id
- * @property level|null   level
- * @property float        latitude
- * @property float        longitude
+ * @property integer              id
+ * @property integer|null         user_id
+ * @property user|null            user
+ * @property integer|null         level_id
+ * @property level|null           level
+ * @property Comment[]|Collection comments
+ * @property string               name
+ * @property string               description
+ * @property float                latitude
+ * @property float                longitude
  */
 class Challenge extends Model
 {
@@ -50,6 +53,14 @@ class Challenge extends Model
     public function level(): BelongsTo
     {
         return $this->belongsTo(Level::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 
     // endregion

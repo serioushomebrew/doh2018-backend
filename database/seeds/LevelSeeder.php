@@ -11,11 +11,12 @@ class LevelSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             factory(\App\Level::class)->create([
                 'points'      => $i * 100,
                 'name'        => 'Level ' . $i,
                 'description' => 'This is level ' . $i,
+                'image'       => url('/img/level-' . $i . '.svg'),
             ]);
         }
     }

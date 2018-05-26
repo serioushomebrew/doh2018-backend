@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class ChallengeSeeder extends Seeder
@@ -18,6 +19,24 @@ class ChallengeSeeder extends Seeder
             'description' => 'Owner of multiple cookie selling sites',
         ]);
 
+        /** @var User $hacker */
+        $hacker = \App\User::query()->hackers()->first();
+        /** @var \App\Challenge $challenge */
+        $challenge = factory(\App\Challenge::class)->create([
+            'status'      => \App\Challenge::STATUS_COMPLETED,
+            'user_id'     => $user->id,
+            'level_id'    => \App\Level::query()->orderBy('points', 'desc')->first(),
+            'name'        => 'My website is offline',
+            'description' => 'I just bought a new domain',
+        ]);
+        $challenge->comments()->create([
+            'user_id'     => $hacker->id,
+            'description' => 'Did you configured the DNS settings?',
+        ]);
+        $challenge->comments()->create([
+            'user_id'     => $user->id,
+            'description' => 'Thanks I didnt\'t configure them',
+        ]);
         factory(\App\Challenge::class)->create([
             'user_id'     => $user->id,
             'level_id'    => \App\Level::query()->orderBy('points')->first(),
