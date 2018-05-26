@@ -20,6 +20,10 @@ use Illuminate\Support\Collection;
  * @property string               name
  * @property string               description
  * @property integer|null         reward_points
+ * @property string|null          street
+ * @property string|null          house_number
+ * @property string|null          city
+ * @property string|null          postal_code
  * @property float                latitude
  * @property float                longitude
  */
@@ -43,6 +47,10 @@ class Challenge extends Model
         'name',
         'description',
         'reward_points',
+        'street',
+        'house_number',
+        'city',
+        'postal_code',
         'latitude',
         'longitude',
     ];
