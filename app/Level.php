@@ -2,31 +2,25 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class User
+ * Class Level
  *
  * @package App
- * @property string name
- * @property string email
+ * @property integer     points
+ * @property string      name
+ * @property string      description
+ * @property string|null image
  */
-class User extends Authenticatable
+class Level extends Model
 {
-    use Notifiable;
-
     /** @var array */
     protected $fillable = [
+        'points',
         'name',
-        'email',
-        'password',
-    ];
-
-    /** @var array */
-    protected $hidden = [
-        'password',
-        'remember_token',
+        'description',
+        'image',
     ];
 
     // region RELATIONSHIPS  
