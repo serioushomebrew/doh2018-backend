@@ -18,8 +18,6 @@ class AddressesController extends Controller
             'number' => $number
         ]);
 
-        dd($data);
-
         if($data->has('_embedded')){
             $embed = collect($data['_embedded']);
             if($embed->has('addresses')){
