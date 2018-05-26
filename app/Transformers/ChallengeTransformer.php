@@ -3,13 +3,14 @@
 namespace App\Transformers;
 
 use App\Challenge;
+use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 
 class ChallengeTransformer extends TransformerAbstract
 {
     /** @var array */
-    protected $availableIncludes = ['level', 'user'];
+    protected $availableIncludes = ['level', 'user', 'files'];
 
     /**
      * A Fractal transformer.
@@ -49,5 +50,14 @@ class ChallengeTransformer extends TransformerAbstract
     public function includeUser(Challenge $challenge): Item
     {
         return $this->item($challenge->user, new UserTransformer());
+    }
+
+    /**
+     * @param Challenge $challenge
+     * @return Collection
+     */
+    public function includeFiles(Challenge $challenge): Collection
+    {
+        return $this->collection($challenge->files, new FileTransformer());
     }
 }

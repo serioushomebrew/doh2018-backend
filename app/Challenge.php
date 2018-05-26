@@ -21,6 +21,7 @@ use Illuminate\Support\Collection;
  * @property Comment[]|Collection comments
  * @property User[]|Collection    users
  * @property Skill[]|Collection   skills
+ * @property File[]|Collection    files
  * @property string               name
  * @property string               description
  * @property integer|null         reward_points
@@ -91,6 +92,14 @@ class Challenge extends Model
     public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function files(): HasMany
+    {
+        return $this->hasMany(File::class);
     }
 
     // endregion
