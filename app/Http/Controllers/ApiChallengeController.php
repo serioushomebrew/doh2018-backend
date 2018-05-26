@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Challenge;
 use App\Http\Requests\ApiChallengeStoreRequest;
+use App\Http\Requests\ApiChallengeUpdateRequest;
 use App\Transformers\ChallengeTransformer;
 use App\User;
 use Illuminate\Http\Request;
@@ -29,8 +30,20 @@ class ApiChallengeController extends Controller
         /** @var User $user */
         $user = auth()->user();
         /** @var Challenge $challenge */
-        $challenge = $user->challenges()->create($request->all());
+        $challenge = $user->challenges()->create($request->validated());
         $challenge->skills()->attach($request->get('skills'));
+
+        return fractal($challenge->fresh(), new ChallengeTransformer());
+    }
+
+    /**
+     * @param ApiChallengeUpdateRequest $request
+     * @param Challenge                 $challenge
+     * @return Fractal
+     */
+    public function update(ApiChallengeUpdateRequest $request, Challenge $challenge): Fractal
+    {
+        $challenge->update($request->validated());
 
         return fractal($challenge->fresh(), new ChallengeTransformer());
     }

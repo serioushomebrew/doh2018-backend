@@ -7,7 +7,7 @@ use App\Level;
 use App\Skill;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ApiChallengeStoreRequest extends FormRequest
+class ApiChallengeUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,8 @@ class ApiChallengeStoreRequest extends FormRequest
         return [
             'level_id'      => ['exists:' . (new Level())->getTable() . ',id'],
             'status'        => ['numeric', 'in:' . implode(',', Challenge::STATUSES)],
-            'name'          => ['required', 'string', 'max:255'],
-            'description'   => ['required', 'string'],
+            'name'          => ['string', 'max:255'],
+            'description'   => ['string'],
             'reward_points' => ['numeric'],
             'street'        => ['string'],
             'house_number'  => ['string'],

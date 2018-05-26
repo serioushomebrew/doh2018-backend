@@ -24,6 +24,7 @@ use Illuminate\Support\Collection;
  * @property Skill[]|Collection   skills
  * @property File[]|Collection    files
  * @property string               name
+ * @property string               status
  * @property string               description
  * @property integer|null         reward_points
  * @property string|null          street
@@ -50,6 +51,7 @@ class Challenge extends Model
     protected $fillable = [
         'level_id',
         'user_id',
+        'status',
         'name',
         'description',
         'reward_points',

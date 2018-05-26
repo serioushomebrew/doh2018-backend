@@ -16,7 +16,7 @@ class ApiChallengeCommentController extends Controller
      */
     public function store(ApiChallengeCommentStoreRequest $request, Challenge $challenge): Fractal
     {
-        $comment = $challenge->comments()->create(array_merge($request->all(), [
+        $comment = $challenge->comments()->create(array_merge($request->validated(), [
             'user_id' => auth()->id(),
         ]));
 

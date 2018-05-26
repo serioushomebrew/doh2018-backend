@@ -17,6 +17,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('skills', 'ApiSkillController@index');
     Route::get('challenges', 'ApiChallengeController@index');
     Route::post('challenges', 'ApiChallengeController@store');
+    Route::patch('challenges/{challenge}', 'ApiChallengeController@update');
     Route::post('challenges/{challenge}/comments', 'ApiChallengeCommentController@store');
     Route::get('users', 'ApiUserController@index');
     Route::get('levels', 'ApiLevelController@index');
