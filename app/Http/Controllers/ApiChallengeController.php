@@ -7,6 +7,7 @@ use App\Http\Requests\ApiChallengeCompleteRequest;
 use App\Http\Requests\ApiChallengeStoreRequest;
 use App\Http\Requests\ApiChallengeUpdateRequest;
 use App\Transformers\ChallengeTransformer;
+use App\Transformers\UserTransformer;
 use App\User;
 use Illuminate\Http\Request;
 use Spatie\Fractal\Fractal;
@@ -63,6 +64,10 @@ class ApiChallengeController extends Controller
             $user->update(['points' => $user->points + $challenge->reward_points]);
         }
 
-        return fractal($challenge, new ChallengeTransformer());
+        return [
+            'challenge'  => fractal($challenge, new ChallengeTransformer()),
+            'user'       => fractal($user, new UserTransformer()),
+            'leveled_up' => true,
+        ];
     }
 }
