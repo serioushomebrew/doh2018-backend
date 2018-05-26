@@ -67,9 +67,6 @@ class ChallengeSeeder extends Seeder
             'status'        => \App\Challenge::STATUS_OPEN,
             'level_id'      => \App\Level::query()->orderBy('points', 'desc')->first(),
             'name'          => 'All servers are under DDOS attacks',
-            'city'          => 'Zoetermeer',
-            'latitude'      => 52.0464953,
-            'longitude'     => 4.5145502,
             'description'   => 'Can anyone help me with this.<br>Reward is 1 year free stack hosting with 10TB space.',
         ]);
     }
