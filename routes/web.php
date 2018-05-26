@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('politieapi','PolitieApiController',['name' => 'politie']);
+Route::get('politieapi/localOfficer/{lat}/{long}', 'PolitieApiController@localOfficer')->name('politie.localofficer');
 
 Auth::routes();
 
