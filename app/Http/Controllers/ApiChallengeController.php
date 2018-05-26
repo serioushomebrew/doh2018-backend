@@ -30,6 +30,14 @@ class ApiChallengeController extends Controller
         $user = auth()->user();
         /** @var Challenge $challenge */
         $challenge = $user->challenges()->create($request->all());
+
+        $ac = new AddressesController;
+        $latLong = $ac->checkZipcode($challenge->postal_code, $challenge->house_number);
+        $challenge->latitude = $latLong['lat'];
+        $challenge->longitude = $latLong['long'];
+        $challenge->save();
+
+
         $challenge->skills()->attach($request->get('skills'));
 
         return fractal($challenge->fresh(), new ChallengeTransformer());
