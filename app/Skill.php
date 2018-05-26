@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
  * @property integer                id
  * @property string                 name
  * @property User[]|Collection      users
- * @property Challenge[]|Collection challenge
+ * @property Challenge[]|Collection challenges
  */
 class Skill extends Model
 {
