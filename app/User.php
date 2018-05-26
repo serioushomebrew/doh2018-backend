@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\HasCoordinatesTrait;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,7 +25,7 @@ use Illuminate\Support\Collection;
  */
 class User extends Authenticatable
 {
-    use Notifiable, HasCoordinatesTrait;
+    use Notifiable, HasCoordinatesTrait, Filterable;
 
     public const TYPE_USER = 1;
     public const TYPE_HACKER = 2;

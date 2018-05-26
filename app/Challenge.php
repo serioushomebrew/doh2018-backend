@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\HasCoordinatesTrait;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -32,7 +33,7 @@ use Illuminate\Support\Collection;
  */
 class Challenge extends Model
 {
-    use HasCoordinatesTrait;
+    use HasCoordinatesTrait, Filterable;
 
     public const STATUS_IN_REVIEW = 1;
     public const STATUS_OPEN = 2;
