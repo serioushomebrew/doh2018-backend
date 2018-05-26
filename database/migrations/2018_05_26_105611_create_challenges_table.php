@@ -15,6 +15,8 @@ class CreateChallengesTable extends Migration
     {
         Schema::create('challenges', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('level_id')->nullable();
             $table->foreign('level_id')->references('id')->on('levels');
             $table->string('name');
