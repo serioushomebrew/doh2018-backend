@@ -19,6 +19,9 @@ class CreateChallengesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('level_id')->nullable();
             $table->foreign('level_id')->references('id')->on('levels');
+            $table->unsignedInteger('status')->nullable();
+            $table->decimal('latitude', 10, 2)->nullable();
+            $table->decimal('longitude', 10, 2)->nullable();
             $table->string('name');
             $table->text('description');
             $table->timestamps();

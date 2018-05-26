@@ -2,16 +2,21 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
 /**
  * Class User
  *
  * @package App
- * @property integer id
- * @property string  name
- * @property string  email
+ * @property integer            id
+ * @property integer|null       points
+ * @property string             name
+ * @property string             description
+ * @property string             email
+ * @property Skill[]|Collection skills
  */
 class User extends Authenticatable
 {
@@ -29,6 +34,7 @@ class User extends Authenticatable
 
     /** @var array */
     protected $fillable = [
+        'points',
         'name',
         'description',
         'email',
@@ -42,6 +48,14 @@ class User extends Authenticatable
     ];
 
     // region RELATIONSHIPS  
+
+    /**
+     * @return BelongsToMany
+     */
+    public function skills(): BelongsToMany
+    {
+        return $this->belongsToMany(Skill::class);
+    }
 
     // endregion
 

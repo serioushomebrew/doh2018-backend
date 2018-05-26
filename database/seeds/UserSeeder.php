@@ -32,22 +32,27 @@ class UserSeeder extends Seeder
             'email' => 'nils@doh.nl',
         ]);
 
-        factory(\App\User::class)->create([
-            'type'  => \App\User::TYPE_HACKER,
-            'name'  => 'Hacker 1',
-            'email' => 'hacker1@doh.nl',
+        /** @var \App\User $hacker */
+        $hacker = factory(\App\User::class)->create([
+            'type'   => \App\User::TYPE_HACKER,
+            'points' => 100,
+            'name'   => 'Hacker 1',
+            'email'  => 'hacker1@doh.nl',
         ]);
-        factory(\App\User::class)->create([
-            'type'  => \App\User::TYPE_HACKER,
-            'name'  => 'Hacker 2',
-            'email' => 'hacker2@doh.nl',
+        $hacker->skills()->sync([
+            \App\Skill::query()->firstOrCreate(['name' => 'Privacy'])->id,
         ]);
-
-        factory(\App\User::class)->create([
-            'type'        => \App\User::TYPE_ADVISER,
-            'name'        => 'Jan',
+        /** @var \App\User $hacker */
+        $hacker = factory(\App\User::class)->create([
+            'type'        => \App\User::TYPE_HACKER,
+            'points'      => 210,
+            'name'        => 'Hacker 2',
             'description' => 'Developer at Bits of Freedom',
-            'email'       => 'jan@adviser.nl',
+            'email'       => 'hacker2@doh.nl',
+        ]);
+        $hacker->skills()->sync([
+            \App\Skill::query()->firstOrCreate(['name' => 'DNS'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'DDOS attacks'])->id,
         ]);
     }
 }
