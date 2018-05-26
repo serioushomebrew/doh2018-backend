@@ -38,6 +38,26 @@ class ChallengeTransformer extends TransformerAbstract
 
     /**
      * @param Challenge $challenge
+     * @return string
+     */
+    protected function getStatusName(Challenge $challenge): string
+    {
+        switch ($challenge->status) {
+            case Challenge::STATUS_IN_REVIEW:
+                return 'in review';
+            case Challenge::STATUS_OPEN :
+                return 'open';
+            case Challenge::STATUS_CLOSED:
+                return 'closed';
+            case Challenge::STATUS_COMPLETED:
+                return 'completed';
+        }
+
+        return '';
+    }
+
+    /**
+     * @param Challenge $challenge
      * @return Item
      */
     public function includeLevel(Challenge $challenge): Item
@@ -79,25 +99,5 @@ class ChallengeTransformer extends TransformerAbstract
     public function includeComments(Challenge $challenge): Collection
     {
         return $this->collection($challenge->comments, new CommentTransformer());
-    }
-
-    /**
-     * @param Challenge $challenge
-     * @return string
-     */
-    protected function getStatusName(Challenge $challenge): string
-    {
-        switch ($challenge->status) {
-            case Challenge::STATUS_IN_REVIEW:
-                return 'in review';
-            case Challenge::STATUS_OPEN :
-                return 'open';
-            case Challenge::STATUS_CLOSED:
-                return 'closed';
-            case Challenge::STATUS_COMPLETED:
-                return 'completed';
-        }
-
-        return '';
     }
 }
