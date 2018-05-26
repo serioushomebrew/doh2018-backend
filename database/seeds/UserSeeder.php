@@ -34,10 +34,12 @@ class UserSeeder extends Seeder
 
         /** @var \App\User $hacker */
         $hacker = factory(\App\User::class)->create([
-            'type'   => \App\User::TYPE_HACKER,
-            'points' => 100,
-            'name'   => 'Hacker 1',
-            'email'  => 'hacker1@doh.nl',
+            'type'      => \App\User::TYPE_HACKER,
+            'points'    => 100,
+            'name'      => 'Hacker 1',
+            'email'     => 'hacker1@doh.nl',
+            'latitude'  => 52.065474,
+            'longitude' => 4.481966,
         ]);
         $hacker->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'Privacy'])->id,
@@ -49,6 +51,8 @@ class UserSeeder extends Seeder
             'name'        => 'Hacker 2',
             'description' => 'Developer at Bits of Freedom',
             'email'       => 'hacker2@doh.nl',
+            'latitude'    => 52.056500,
+            'longitude'   => 4.504377,
         ]);
         $hacker->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DNS'])->id,

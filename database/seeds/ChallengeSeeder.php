@@ -30,6 +30,7 @@ class ChallengeSeeder extends Seeder
             'name'          => 'My website is offline',
             'description'   => 'I just bought a new domain',
         ]);
+        $challenge->users()->attach($hacker);
         $challenge->comments()->create([
             'user_id'     => $hacker->id,
             'description' => 'Did you configured the DNS settings?',

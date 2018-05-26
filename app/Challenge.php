@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Traits\HasCoordinatesTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
@@ -17,6 +19,7 @@ use Illuminate\Support\Collection;
  * @property integer|null         level_id
  * @property level|null           level
  * @property Comment[]|Collection comments
+ * @property User[]|Collection    users
  * @property string               name
  * @property string               description
  * @property integer|null         reward_points
@@ -24,11 +27,11 @@ use Illuminate\Support\Collection;
  * @property string|null          house_number
  * @property string|null          city
  * @property string|null          postal_code
- * @property float                latitude
- * @property float                longitude
  */
 class Challenge extends Model
 {
+    use HasCoordinatesTrait;
+
     public const STATUS_IN_REVIEW = 1;
     public const STATUS_OPEN = 2;
     public const STATUS_CLOSED = 3;
@@ -71,6 +74,14 @@ class Challenge extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 
     // endregion
