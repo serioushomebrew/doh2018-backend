@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Class Comment
  *
  * @package App
- * @property integer   int
+ * @property integer   id
  * @property User      user
  * @property integer   user_id
  * @property Challenge challenge

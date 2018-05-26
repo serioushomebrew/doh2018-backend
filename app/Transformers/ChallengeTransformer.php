@@ -10,7 +10,7 @@ use League\Fractal\TransformerAbstract;
 class ChallengeTransformer extends TransformerAbstract
 {
     /** @var array */
-    protected $availableIncludes = ['level', 'user', 'files', 'skills'];
+    protected $availableIncludes = ['level', 'user', 'files', 'skills', 'comments'];
 
     /**
      * A Fractal transformer.
@@ -68,5 +68,14 @@ class ChallengeTransformer extends TransformerAbstract
     public function includeSkills(Challenge $challenge): Collection
     {
         return $this->collection($challenge->skills, new SkillTransformer());
+    }
+
+    /**
+     * @param Challenge $challenge
+     * @return Collection
+     */
+    public function includeComments(Challenge $challenge): Collection
+    {
+        return $this->collection($challenge->comments, new CommentTransformer());
     }
 }
