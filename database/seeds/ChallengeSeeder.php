@@ -23,11 +23,12 @@ class ChallengeSeeder extends Seeder
         $hacker = \App\User::query()->hackers()->first();
         /** @var \App\Challenge $challenge */
         $challenge = factory(\App\Challenge::class)->create([
-            'status'      => \App\Challenge::STATUS_COMPLETED,
-            'user_id'     => $user->id,
-            'level_id'    => \App\Level::query()->orderBy('points', 'desc')->first(),
-            'name'        => 'My website is offline',
-            'description' => 'I just bought a new domain',
+            'status'        => \App\Challenge::STATUS_COMPLETED,
+            'reward_points' => 150,
+            'user_id'       => $user->id,
+            'level_id'      => \App\Level::query()->orderBy('points', 'desc')->first(),
+            'name'          => 'My website is offline',
+            'description'   => 'I just bought a new domain',
         ]);
         $challenge->comments()->create([
             'user_id'     => $hacker->id,
@@ -44,10 +45,12 @@ class ChallengeSeeder extends Seeder
             'description' => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
         ]);
         factory(\App\Challenge::class)->create([
-            'user_id'     => $user->id,
-            'level_id'    => \App\Level::query()->orderBy('points', 'desc')->first(),
-            'name'        => 'My website is under a DDOS attack',
-            'description' => 'My website is now under DDOS attack for 2 days, the url is http://www.isellgoodcookies.com',
+            'user_id'       => $user->id,
+            'reward_points' => 150,
+            'status'        => \App\Challenge::STATUS_OPEN,
+            'level_id'      => \App\Level::query()->orderBy('points', 'desc')->first(),
+            'name'          => 'My website is under a DDOS attack',
+            'description'   => 'My website is now under DDOS attack for 2 days, the url is http://www.isellgoodcookies.com',
         ]);
     }
 }

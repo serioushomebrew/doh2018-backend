@@ -19,6 +19,7 @@ use Illuminate\Support\Collection;
  * @property Comment[]|Collection comments
  * @property string               name
  * @property string               description
+ * @property integer|null         reward_points
  * @property float                latitude
  * @property float                longitude
  */
@@ -41,6 +42,7 @@ class Challenge extends Model
         'user_id',
         'name',
         'description',
+        'reward_points',
         'latitude',
         'longitude',
     ];

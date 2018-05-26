@@ -24,6 +24,7 @@ class CreateChallengesTable extends Migration
             $table->decimal('longitude', 10, 2)->nullable();
             $table->string('name');
             $table->text('description');
+            $table->unsignedSmallInteger('reward_points')->nullable();
             $table->timestamps();
         });
     }
