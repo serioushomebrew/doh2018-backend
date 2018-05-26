@@ -67,13 +67,14 @@ class ChallengeSeeder extends Seeder
     {
         /** @var Challenge $challenge */
         $challenge = factory(Challenge::class)->create([
-            'user_id'     => $user->id,
-            'level_id'    => Level::query()->orderBy('points')->first(),
-            'name'        => 'Wordpress website has been hacked',
-            'city'        => 'Zoetermeer',
-            'latitude'    => 52.0464953,
-            'longitude'   => 4.5145502,
-            'description' => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
+            'user_id'       => $user->id,
+            'level_id'      => Level::query()->orderBy('points')->first(),
+            'reward_points' => 150,
+            'name'          => 'Wordpress website has been hacked',
+            'city'          => 'Zoetermeer',
+            'latitude'      => 52.0464953,
+            'longitude'     => 4.5145502,
+            'description'   => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
         ]);
         $challenge->files()->create([
             'name'        => 'wp-config.php',
@@ -129,15 +130,17 @@ class ChallengeSeeder extends Seeder
     {
         /** @var Challenge $challenge */
         $challenge = factory(Challenge::class)->create([
-            'user_id'     => factory(\App\User::class)->create([
+            'user_id'       => factory(\App\User::class)->create([
                 'name'        => 'jake',
                 'email'       => 'jake@transip.nl',
                 'description' => 'Developer at TransIp',
             ]),
-            'status'      => Challenge::STATUS_OPEN,
-            'level_id'    => Level::query()->orderBy('points', 'desc')->first(),
-            'name'        => 'All servers are under DDOS attacks',
-            'description' => 'Can anyone help me with this.<br>Reward is 1 year free stack hosting with 10TB space.',
+            'status'        => Challenge::STATUS_OPEN,
+            'level_id'      => Level::query()->orderBy('points', 'desc')->first(),
+            'reward_points' => 1000,
+            'reward_gift'   => '1 year free stack hosting with 10TB of space',
+            'name'          => 'All servers are under DDOS attacks',
+            'description'   => 'Can anyone help me with this',
         ]);
         $challenge->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,

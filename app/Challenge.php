@@ -27,6 +27,7 @@ use Illuminate\Support\Collection;
  * @property string               status
  * @property string               description
  * @property integer|null         reward_points
+ * @property integer|null         reward_gift
  * @property string|null          street
  * @property string|null          house_number
  * @property string|null          city
@@ -55,6 +56,7 @@ class Challenge extends Model
         'name',
         'description',
         'reward_points',
+        'reward_gift',
         'street',
         'house_number',
         'city',

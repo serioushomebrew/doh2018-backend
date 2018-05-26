@@ -22,7 +22,8 @@ class CreateChallengesTable extends Migration
             $table->unsignedInteger('status')->nullable();
             $table->string('name');
             $table->text('description');
-            $table->unsignedSmallInteger('reward_points')->nullable();
+            $table->unsignedInteger('reward_points')->nullable();
+            $table->string('reward_gift')->nullable();
             $table->string('street')->nullable();
             $table->string('house_number')->nullable();
             $table->string('city')->nullable();

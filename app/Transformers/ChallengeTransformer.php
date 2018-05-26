@@ -27,6 +27,7 @@ class ChallengeTransformer extends TransformerAbstract
             'name'          => $challenge->name,
             'description'   => $challenge->description,
             'reward_points' => $challenge->reward_points,
+            'reward_gift'   => $challenge->reward_gift,
             'street'        => $challenge->street,
             'house_number'  => $challenge->house_number,
             'city'          => $challenge->city,
