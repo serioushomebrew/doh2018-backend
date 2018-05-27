@@ -34,13 +34,7 @@ class ApiChallengeController extends Controller
         /** @var Challenge $challenge */
         $challenge = $user->challenges()->create($request->validated());
 
-        $ac = new AddressesController;
-        $addressApi = $ac->checkZipcode($challenge->postal_code, $challenge->house_number);
-        $challenge->latitude = $addressApi['lat'];
-        $challenge->longitude = $addressApi['long'];
-        $challenge->city = $addressApi['city'];
-        $challenge->street = $addressApi['street'];
-        $challenge->save();
+        (new AddressesController())->updateChallenge($challenge);
 
         $challenge->skills()->attach($request->get('skills'));
 
@@ -55,7 +49,7 @@ class ApiChallengeController extends Controller
     public function update(ApiChallengeUpdateRequest $request, Challenge $challenge): Fractal
     {
         $challenge->update($request->validated());
-
+        (new AddressesController())->updateChallenge($challenge);
         return fractal($challenge->fresh(), new ChallengeTransformer());
     }
 
