@@ -1,6 +1,7 @@
 <?php
 
 use App\Challenge;
+use App\Http\Controllers\AddressesController;
 use App\Level;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -47,6 +48,7 @@ class ChallengeSeeder extends Seeder
             'latitude'      => 52.0464953,
             'longitude'     => 4.5145502,
         ]);
+        (new AddressesController())->updateChallenge($challenge);
         $challenge->users()->syncWithoutDetaching([
             $hacker->id => ['accepted_at' => now()],
         ]);
@@ -152,6 +154,7 @@ class ChallengeSeeder extends Seeder
             'postal_code'   => '2181HS',
             'house_number'  => '36',
         ]);
+        (new AddressesController())->updateChallenge($challenge);
         $challenge->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
         ]);

@@ -30,7 +30,7 @@ class ChallengeTransformer extends TransformerAbstract
             'status'        => $challenge->status,
             'status_name'   => $this->getStatusName($challenge),
             'name'          => $challenge->name,
-            'description'   => $connected_to_issue ? $challenge->description : null,
+            'description'   => $challenge->description,
             'reward_points' => $challenge->reward_points,
             'reward_gift'   => $challenge->reward_gift,
             'street'        => $connected_to_issue ? $challenge->street : null,
