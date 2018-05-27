@@ -80,6 +80,8 @@ class ApiChallengeController extends Controller
 
             $officer = (new PolitieApiController())->localOfficerArray($challenge->latitude,$challenge->longitude);
 
+            dd($officer);
+
             if(!empty($officer['naam'])){
                 (new SMSController())
                     ->send('Hallo '.$officer['naam'].', De gebruiker '.$user->name.' heeft het hoogste level gehaald. Je kunt contact met hem opnemen voor het screenen.','+31631348757');
