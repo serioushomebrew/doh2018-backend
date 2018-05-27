@@ -17,4 +17,15 @@ class ApiUserController extends Controller
     {
         return fractal(User::query()->filter($request->all())->get(), new UserTransformer());
     }
+
+    /**
+     * @return Fractal
+     */
+    public function profile(): Fractal
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        return fractal($user, new UserTransformer());
+    }
 }

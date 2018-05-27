@@ -7,10 +7,10 @@ use App\Http\Requests\ApiChallengeAcceptParticipateRequest;
 use App\Http\Requests\ApiChallengeCompleteRequest;
 use App\Http\Requests\ApiChallengeStoreRequest;
 use App\Http\Requests\ApiChallengeUpdateRequest;
+use App\Level;
 use App\Transformers\ChallengeTransformer;
 use App\Transformers\UserTransformer;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\Fractal\Fractal;
@@ -35,7 +35,13 @@ class ApiChallengeController extends Controller
         /** @var User $user */
         $user = auth()->user();
         /** @var Challenge $challenge */
-        $challenge = $user->challenges()->create($request->validated());
+        $data = $request->validated();
+        if (array_key_exists('level_id', $data)) {
+            /** @var Level $level */
+            $level = Level::query()->orderBy('points')->first();
+            $data['level_id'] = $level->id;
+        }
+        $challenge = $user->challenges()->create($data);
 
         (new AddressesController())->updateChallenge($challenge);
 
@@ -53,6 +59,7 @@ class ApiChallengeController extends Controller
     {
         $challenge->update($request->validated());
         (new AddressesController())->updateChallenge($challenge);
+
         return fractal($challenge->fresh(), new ChallengeTransformer());
     }
 

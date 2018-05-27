@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('challenges/{challenge}/accept-participate', 'ApiChallengeController@acceptParticipate');
     Route::post('challenges/{challenge}/comments', 'ApiChallengeCommentController@store');
     Route::get('users', 'ApiUserController@index');
+    Route::get('profile', 'ApiUserController@profile');
     Route::get('levels', 'ApiLevelController@index');
     Route::get('localOfficer/{lat}/{long}', 'PolitieApiController@localOfficer')->name('politie.localofficer');
 });
