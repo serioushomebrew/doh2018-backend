@@ -20,6 +20,7 @@ class CommentTransformer extends TransformerAbstract
     {
         return [
             'id'          => $comment->id,
+            'is_own'      => $comment->user_id === auth()->id(),
             'user_id'     => $comment->user_id,
             'description' => $comment->description,
         ];

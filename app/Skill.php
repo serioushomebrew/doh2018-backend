@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\ParticipatesToChallenges;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

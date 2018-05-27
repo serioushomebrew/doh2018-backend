@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Traits\ParticipatesToChallenges;
+use App\Traits\BelongsToUsers;
 use App\Traits\HasCoordinatesTrait;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;

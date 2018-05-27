@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\PariticpatesToChallenge;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 

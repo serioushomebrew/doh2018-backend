@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\PariticpatesToChallenge;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Comment extends Model
 {
-    use Filterable;
+    use Filterable, PariticpatesToChallenge;
 
     /** @var array */
     protected $fillable = [

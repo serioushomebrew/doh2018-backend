@@ -10,7 +10,7 @@ use League\Fractal\TransformerAbstract;
 class ChallengeTransformer extends TransformerAbstract
 {
     /** @var array */
-    protected $availableIncludes = ['level', 'user', 'files', 'skills', 'comments'];
+    protected $availableIncludes = ['level', 'user', 'files', 'skills', 'comments', 'requests', 'participants'];
 
     /**
      * A Fractal transformer.
@@ -20,20 +20,25 @@ class ChallengeTransformer extends TransformerAbstract
      */
     public function transform(Challenge $challenge): array
     {
+        $connected_to_issue = $challenge->users()
+            ->wherePivot('accepted_at', '!=', null)
+            ->where('id', auth()->id())
+            ->exists();
+
         return [
             'id'            => $challenge->id,
             'status'        => $challenge->status,
             'status_name'   => $this->getStatusName($challenge),
             'name'          => $challenge->name,
-            'description'   => $challenge->description,
+            'description'   => $connected_to_issue ? $challenge->description : null,
             'reward_points' => $challenge->reward_points,
             'reward_gift'   => $challenge->reward_gift,
-            'street'        => $challenge->street,
-            'house_number'  => $challenge->house_number,
-            'city'          => $challenge->city,
-            'postal_code'   => $challenge->postal_code,
-            'latitude'      => $challenge->latitude,
-            'longitude'     => $challenge->longitude,
+            'street'        => $connected_to_issue ? $challenge->street : null,
+            'house_number'  => $connected_to_issue ? $challenge->house_number : null,
+            'city'          => $connected_to_issue ? $challenge->city : null,
+            'postal_code'   => $connected_to_issue ? $challenge->postal_code : null,
+            'latitude'      => $connected_to_issue ? $challenge->latitude : null,
+            'longitude'     => $connected_to_issue ? $challenge->longitude : null,
         ];
     }
 
@@ -100,5 +105,27 @@ class ChallengeTransformer extends TransformerAbstract
     public function includeComments(Challenge $challenge): Collection
     {
         return $this->collection($challenge->comments, new CommentTransformer());
+    }
+
+    /**
+     * @param Challenge $challenge
+     * @return Collection
+     */
+    public function includeRequests(Challenge $challenge): Collection
+    {
+        $requests = $challenge->users()->wherePivot('accepted_at', null)->get();
+
+        return $this->collection($requests, new UserTransformer());
+    }
+
+    /**
+     * @param Challenge $challenge
+     * @return Collection
+     */
+    public function includeParticipants(Challenge $challenge): Collection
+    {
+        $participants = $challenge->users()->wherePivot('accepted_at', '!=', null)->get();
+
+        return $this->collection($participants, new UserTransformer());
     }
 }
