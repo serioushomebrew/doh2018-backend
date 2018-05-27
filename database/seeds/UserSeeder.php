@@ -37,8 +37,8 @@ class UserSeeder extends Seeder
         $hacker = factory(\App\User::class)->create([
             'type'      => \App\User::TYPE_HACKER,
             'points'    => 480,
-            'name'      => 'Hacker 1',
-            'email'     => 'hacker1@doh.nl',
+            'name'      => 'Elliot',
+            'email'     => 'elliot@doh.nl',
             'latitude'  => 52.065474,
             'longitude' => 4.481966,
             'api_token' => 'lV475jlAla8aCir45PAtNdPlbG46ih5Ji5bqwzJeFQLU23aXAvYECSYUj7GirgsW',
