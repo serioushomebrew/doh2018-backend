@@ -2,14 +2,16 @@
 
 namespace App\Transformers;
 
+use App\Level;
 use App\User;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 
 class UserTransformer extends TransformerAbstract
 {
     /** @var array */
-    protected $availableIncludes = ['skills', 'challenges'];
+    protected $availableIncludes = ['skills', 'challenges', 'current_level'];
 
     /**
      * A Fractal transformer.
@@ -46,5 +48,20 @@ class UserTransformer extends TransformerAbstract
     public function includeChallenges(User $user): Collection
     {
         return $this->collection($user->challenges, new ChallengeTransformer());
+    }
+
+    /**
+     * @param User $user
+     * @return Item
+     */
+    public function includeCurrentLevel(User $user): Item
+    {
+        if ($user->points === null) {
+            $current_level = Level::query()->orderBy('points')->first();
+        } else {
+            $current_level = Level::query()->where('points', '<=', $user->points)->orderBy('points', 'desc')->first();
+        }
+
+        return $this->item($current_level, new LevelTransformer());
     }
 }

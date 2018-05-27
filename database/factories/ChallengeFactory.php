@@ -11,6 +11,7 @@ $factory->define(\App\Challenge::class, function (Faker $faker) {
             return factory(\App\Level::class)->create();
         },
         'reward_points' => $faker->numberBetween(100, 1000),
+        'reward_gift'   => null,
         'status'        => \App\Challenge::STATUS_IN_REVIEW,
         'name'          => $faker->word,
         'description'   => $faker->realText(),

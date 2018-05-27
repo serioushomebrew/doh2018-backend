@@ -22,9 +22,12 @@ class ChallengeTransformer extends TransformerAbstract
     {
         return [
             'id'            => $challenge->id,
+            'status'        => $challenge->status,
+            'status_name'   => $this->getStatusName($challenge),
             'name'          => $challenge->name,
             'description'   => $challenge->description,
             'reward_points' => $challenge->reward_points,
+            'reward_gift'   => $challenge->reward_gift,
             'street'        => $challenge->street,
             'house_number'  => $challenge->house_number,
             'city'          => $challenge->city,
@@ -32,6 +35,26 @@ class ChallengeTransformer extends TransformerAbstract
             'latitude'      => $challenge->latitude,
             'longitude'     => $challenge->longitude,
         ];
+    }
+
+    /**
+     * @param Challenge $challenge
+     * @return string
+     */
+    protected function getStatusName(Challenge $challenge): string
+    {
+        switch ($challenge->status) {
+            case Challenge::STATUS_IN_REVIEW:
+                return 'in review';
+            case Challenge::STATUS_OPEN :
+                return 'open';
+            case Challenge::STATUS_CLOSED:
+                return 'closed';
+            case Challenge::STATUS_COMPLETED:
+                return 'completed';
+        }
+
+        return '';
     }
 
     /**
