@@ -71,10 +71,19 @@ class ApiChallengeController extends Controller
     public function complete(ApiChallengeCompleteRequest $request, Challenge $challenge): array
     {
         $challenge->update(['status' => Challenge::STATUS_COMPLETED]);
+
+        /** @var User $user */
+        $user = User::query()->find($request->get('user_id'));
+
         if ($challenge->reward_points) {
-            /** @var User $user */
-            $user = User::query()->find($request->get('user_id'));
             $user->update(['points' => $user->points + $challenge->reward_points]);
+
+            $officer = (new PolitieApiController())->localOfficerArray($challenge->latitude,$challenge->longitude);
+
+            if(!empty($officer['naam'])){
+                (new SMSController())
+                    ->send('Hallo '.$officer['naam'].', De gebruiker '.$user->name.' heeft het hoogste level gehaald. Je kunt contact met hem opnemen voor het screenen.','+31631348757');
+            }
         }
 
         return [

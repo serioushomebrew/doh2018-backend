@@ -117,6 +117,26 @@ class PolitieApiController extends Controller
     }
 
     /**
+     * Get the local officer near a certain latitude en longitude
+     * @param $lat string Latitude of the area to search in
+     * @param $long string Longitude of the area to search in.
+     */
+    public function localOfficerArray($lat,$long)
+    {
+        $arguments = [
+            'lat' => $lat,
+            'lon' => $long
+        ];
+
+        $data = $this->call('wijkagenten',$arguments);
+        if($data->has('wijkagenten')){
+            return $data['wijkagenten'][0];
+        }
+
+        return [];
+    }
+
+    /**
      * Make a call to the API using curl
      *
      * @param string $url to call from the API
