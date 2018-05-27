@@ -97,7 +97,7 @@ class ChallengeSeeder extends Seeder
             'size'        => '3.2 MB',
         ]);
         $challenge->skills()->sync([
-            \App\Skill::query()->create(['name' => 'Wordpress'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'Wordpress'])->id,
         ]);
 
         return $challenge;
