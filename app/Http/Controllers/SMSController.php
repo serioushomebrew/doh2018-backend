@@ -42,8 +42,6 @@ class SMSController extends Controller
 
         curl_close($curl);
 
-        dd($response);
-
         return collect(json_decode($response,true));
     }
 }
