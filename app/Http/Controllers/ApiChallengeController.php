@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Challenge;
+use App\Http\Requests\ApiChallengeAcceptParticipateRequest;
 use App\Http\Requests\ApiChallengeCompleteRequest;
 use App\Http\Requests\ApiChallengeStoreRequest;
 use App\Http\Requests\ApiChallengeUpdateRequest;
 use App\Transformers\ChallengeTransformer;
 use App\Transformers\UserTransformer;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\Fractal\Fractal;
 
@@ -60,9 +63,9 @@ class ApiChallengeController extends Controller
     /**
      * @param ApiChallengeCompleteRequest $request
      * @param Challenge                   $challenge
-     * @return Fractal
+     * @return array
      */
-    public function complete(ApiChallengeCompleteRequest $request, Challenge $challenge): Fractal
+    public function complete(ApiChallengeCompleteRequest $request, Challenge $challenge): array
     {
         $challenge->update(['status' => Challenge::STATUS_COMPLETED]);
         if ($challenge->reward_points) {
@@ -76,5 +79,34 @@ class ApiChallengeController extends Controller
             'user'       => fractal($user, new UserTransformer()),
             'leveled_up' => true,
         ];
+    }
+
+    /**
+     * @param Challenge $challenge
+     * @return JsonResponse
+     */
+    public function participate(Challenge $challenge): JsonResponse
+    {
+        $challenge->users()->attach(auth()->user());
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    /**
+     * @param ApiChallengeAcceptParticipateRequest $request
+     * @param Challenge                            $challenge
+     * @return JsonResponse
+     */
+    public function acceptParticipate(ApiChallengeAcceptParticipateRequest $request, Challenge $challenge): JsonResponse
+    {
+        $challenge->users()->syncWithoutDetaching([
+            $request->get('user_id') => ['accepted_at' => now()],
+        ]);
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }

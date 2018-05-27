@@ -43,7 +43,9 @@ class ChallengeSeeder extends Seeder
             'name'          => 'My website is offline',
             'description'   => 'I just bought a new domain',
         ]);
-        $challenge->users()->attach($hacker);
+        $challenge->users()->syncWithoutDetaching([
+            $hacker->id => ['accepted_at' => now()],
+        ]);
         $challenge->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'Privacy'])->id,
         ]);

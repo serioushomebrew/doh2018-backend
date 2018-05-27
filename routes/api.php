@@ -19,6 +19,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('challenges', 'ApiChallengeController@store');
     Route::patch('challenges/{challenge}', 'ApiChallengeController@update');
     Route::post('challenges/{challenge}/complete', 'ApiChallengeController@complete');
+    Route::post('challenges/{challenge}/participate', 'ApiChallengeController@participate');
+    Route::post('challenges/{challenge}/accept-participate', 'ApiChallengeController@acceptParticipate');
     Route::post('challenges/{challenge}/comments', 'ApiChallengeCommentController@store');
     Route::get('users', 'ApiUserController@index');
     Route::get('levels', 'ApiLevelController@index');

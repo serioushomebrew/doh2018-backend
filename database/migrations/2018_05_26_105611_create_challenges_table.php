@@ -38,6 +38,7 @@ class CreateChallengesTable extends Migration
             $table->foreign('challenge_id')->references('id')->on('challenges');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamp('accepted_at')->nullable();
         });
     }
 
