@@ -20,10 +20,11 @@ class ChallengeTransformer extends TransformerAbstract
      */
     public function transform(Challenge $challenge): array
     {
-        $connected_to_issue = $challenge->users()
-            ->wherePivot('accepted_at', '!=', null)
-            ->where('id', auth()->id())
-            ->exists();
+        $connected_to_issue = true;
+//        $connected_to_issue = $challenge->users()
+//            ->wherePivot('accepted_at', '!=', null)
+//            ->where('id', auth()->id())
+//            ->exists();
 
         return [
             'id'            => $challenge->id,
