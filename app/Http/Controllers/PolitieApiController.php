@@ -129,6 +129,7 @@ class PolitieApiController extends Controller
         ];
 
         $data = $this->call('wijkagenten',$arguments);
+        dd($data);
         if($data->has('wijkagenten')){
             return $data['wijkagenten'][0];
         }
