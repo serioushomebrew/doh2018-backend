@@ -44,7 +44,7 @@ class ChallengeSeeder extends Seeder
             'name'          => 'My website is offline',
             'description'   => 'I just bought a new domain',
             'postal_code'   => '2266AJ',
-            'house_number'  => '2',
+            'house_number'  => '34',
             'latitude'      => 52.0464953,
             'longitude'     => 4.5145502,
         ]);
@@ -84,7 +84,7 @@ class ChallengeSeeder extends Seeder
             'longitude'     => 4.5145502,
             'description'   => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
             'postal_code'   => '2266AJ',
-            'house_number'  => '2',
+            'house_number'  => '34',
         ]);
         (new AddressesController())->updateChallenge($challenge);
         $challenge->files()->create([
@@ -120,7 +120,7 @@ class ChallengeSeeder extends Seeder
             'city'          => 'Zoetermeer',
             'description'   => 'My website is now under DDOS attack for 2 days, the url is http://www.isellgoodcookies.com',
             'postal_code'   => '2266AJ',
-            'house_number'  => '2',
+            'house_number'  => '34',
         ]);
         (new AddressesController())->updateChallenge($challenge);
         $challenge->skills()->sync([

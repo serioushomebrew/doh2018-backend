@@ -47,10 +47,11 @@ class AddressesController extends Controller
 
                 $address = $embed->get('addresses');
 
-                if(empty($address) || empty($address['city']) || empty($address['geo']))
+                if(empty($address) || empty($address[0]['city']) || empty($address[0]['geo']))
                 {
                     return false;
                 }
+                $address = $address[0];
 
                 $city = $address['city']['label'];
                 $street = $address['street'];
