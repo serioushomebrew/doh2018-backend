@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Challenge;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,29 @@ class AddressesController extends Controller
     private $endpoint = "https://api.postcodeapi.nu/";
     private $apiVersion = "v2";
 
+    /**
+     * Update or set the address info of a challenge by using Kadaster BAG
+     *
+     * @param Challenge $challenge
+     * @return bool
+     */
+    public function updateChallenge(Challenge $challenge)
+    {
+        $addressApi = $this->checkZipcode($challenge->postal_code, $challenge->house_number);
+        $challenge->latitude = $addressApi['lat'];
+        $challenge->longitude = $addressApi['long'];
+        $challenge->city = $addressApi['city'];
+        $challenge->street = $addressApi['street'];
+        return $challenge->save();
+    }
 
+
+    /**
+     * Use the kadaster API to get a geo location, street and city from the zip and housenumber
+     * @param string $zipcode zipcode of the location
+     * @param string $number number of the house
+     * @return array|bool data from kadaster with longitude, latitude, city and street.
+     */
     public function checkZipcode(string $zipcode, string $number)
     {
         $data = $this->call('addresses', [
@@ -22,10 +45,16 @@ class AddressesController extends Controller
             $embed = collect($data['_embedded']);
             if($embed->has('addresses')){
                 $address = $embed->get('addresses')[0];
+
+                $city = $address['city']['label'];
+                $street = $address['street'];
+
                 $geo = $address['geo']['center']['wgs84']['coordinates'];
                 $long = $geo['0'];
                 $lat = $geo['1'];
                 return [
+                    'city' => $city,
+                    'street' => $street,
                     'lat' => $lat,
                     'long' => $long
                 ];
