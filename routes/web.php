@@ -22,5 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('test', function(){
-    (new \App\Http\Controllers\SMSController())->send('test','+31631348757');
+    (new \App\Http\Controllers\SMSController())->send('Een sms test met oauth','+31631348757');
 });
