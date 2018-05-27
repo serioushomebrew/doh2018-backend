@@ -22,7 +22,7 @@ class ChallengeSeeder extends Seeder
             'description' => 'Owner of multiple cookie selling sites',
         ]);
         $this->createChallengeWebsiteOffline($user);
-        $this->createChallengeWordpressHacked($user);
+        $this->createChallengeWordPressHacked($user);
         $this->createChallengeWebsiteDdos($user);
         $this->createChallengeTransIpDdos();
     }
@@ -71,14 +71,14 @@ class ChallengeSeeder extends Seeder
      * @param User $user
      * @return Challenge
      */
-    protected function createChallengeWordpressHacked(User $user): Challenge
+    protected function createChallengeWordPressHacked(User $user): Challenge
     {
         /** @var Challenge $challenge */
         $challenge = factory(Challenge::class)->create([
             'user_id'       => $user->id,
             'level_id'      => Level::query()->orderBy('points')->first(),
             'reward_points' => 150,
-            'name'          => 'Wordpress website has been hacked',
+            'name'          => 'WordPress website has been hacked',
             'city'          => 'Ommen',
             'description'   => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
             'postal_code'   => '7731BD',
@@ -96,7 +96,7 @@ class ChallengeSeeder extends Seeder
             'size'        => '3.2 MB',
         ]);
         $challenge->skills()->sync([
-            \App\Skill::query()->firstOrCreate(['name' => 'Wordpress'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'WordPress'])->id,
         ]);
 
         return $challenge;
@@ -114,15 +114,15 @@ class ChallengeSeeder extends Seeder
             'reward_points' => 150,
             'status'        => Challenge::STATUS_OPEN,
             'level_id'      => Level::query()->orderBy('points', 'desc')->first(),
-            'name'          => 'My website is under a DDOS attack',
+            'name'          => 'My website is under a DDoS attack',
             'city'          => 'Zoetermeer',
-            'description'   => 'My website is now under DDOS attack for 2 days, the url is http://www.isellgoodcookies.com',
+            'description'   => 'My website is now under DDoS attack for 2 days, the url is http://www.isellgoodcookies.com',
             'postal_code'   => '2266AJ',
             'house_number'  => '34',
         ]);
         (new AddressesController())->updateChallenge($challenge);
         $challenge->skills()->sync([
-            \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'DDoS'])->id,
         ]);
         $challenge->files()->create([
             'name'        => 'request.logs',
@@ -149,14 +149,14 @@ class ChallengeSeeder extends Seeder
             'level_id'      => Level::query()->orderBy('points', 'desc')->first(),
             'reward_points' => 1000,
             'reward_gift'   => '1 year free stack hosting with 10TB of space',
-            'name'          => 'All servers are under DDOS attacks',
+            'name'          => 'All servers are under DDoS attacks',
             'description'   => 'Can anyone help me with this',
             'postal_code'   => '2181HS',
             'house_number'  => '36',
         ]);
         (new AddressesController())->updateChallenge($challenge);
         $challenge->skills()->sync([
-            \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'DDoS'])->id,
         ]);
         $challenge->files()->create([
             'name'        => 'request.logs',
