@@ -57,8 +57,8 @@ class UserSeeder extends Seeder
         ]);
         $hacker->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DNS'])->id,
-            \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
-            \App\Skill::query()->firstOrCreate(['name' => 'Wordpress'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'DDoS'])->id,
+            \App\Skill::query()->firstOrCreate(['name' => 'WordPress'])->id,
         ]);
 
         /** @var \App\User $adviser */
