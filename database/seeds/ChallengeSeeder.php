@@ -79,12 +79,10 @@ class ChallengeSeeder extends Seeder
             'level_id'      => Level::query()->orderBy('points')->first(),
             'reward_points' => 150,
             'name'          => 'Wordpress website has been hacked',
-            'city'          => 'Zoetermeer',
-            'latitude'      => 52.0464953,
-            'longitude'     => 4.5145502,
+            'city'          => 'Ommen',
             'description'   => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
-            'postal_code'   => '2266AJ',
-            'house_number'  => '34',
+            'postal_code'   => '7731DB',
+            'house_number'  => '3',
         ]);
         (new AddressesController())->updateChallenge($challenge);
         $challenge->files()->create([
