@@ -86,6 +86,7 @@ class ChallengeSeeder extends Seeder
             'postal_code'   => '2266AJ',
             'house_number'  => '2',
         ]);
+        (new AddressesController())->updateChallenge($challenge);
         $challenge->files()->create([
             'name'        => 'wp-config.php',
             'description' => 'The wordpress config file',
@@ -121,6 +122,7 @@ class ChallengeSeeder extends Seeder
             'postal_code'   => '2266AJ',
             'house_number'  => '2',
         ]);
+        (new AddressesController())->updateChallenge($challenge);
         $challenge->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
         ]);
