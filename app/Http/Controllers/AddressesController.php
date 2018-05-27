@@ -46,7 +46,11 @@ class AddressesController extends Controller
             if($embed->has('addresses')){
 
                 $address = $embed->get('addresses');
-                dd($address);
+
+                if(empty($address) || empty($address['city']) || empty($address['geo']))
+                {
+                    return false;
+                }
 
                 $city = $address['city']['label'];
                 $street = $address['street'];
