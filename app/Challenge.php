@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Traits\ParticipatesToChallenges;
 use App\Traits\BelongsToUsers;
 use App\Traits\HasCoordinatesTrait;
 use EloquentFilter\Filterable;
@@ -26,7 +25,7 @@ use Illuminate\Support\Collection;
  * @property Skill[]|Collection   skills
  * @property File[]|Collection    files
  * @property string               name
- * @property string               status
+ * @property integer              status
  * @property string               description
  * @property integer|null         reward_points
  * @property integer|null         reward_gift

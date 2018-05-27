@@ -19,7 +19,7 @@ class CreateChallengesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('level_id')->nullable();
             $table->foreign('level_id')->references('id')->on('levels');
-            $table->unsignedInteger('status')->nullable();
+            $table->unsignedInteger('status')->default(\App\Challenge::STATUS_OPEN);
             $table->string('name');
             $table->text('description');
             $table->unsignedInteger('reward_points')->nullable();
