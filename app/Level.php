@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Traits\PariticpatesToChallenge;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Level
  *
  * @package App
- * @property integer id
+ * @property integer     id
  * @property integer     points
  * @property string      name
  * @property string      description
