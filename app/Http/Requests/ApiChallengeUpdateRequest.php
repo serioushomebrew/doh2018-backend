@@ -32,6 +32,7 @@ class ApiChallengeUpdateRequest extends FormRequest
             'name'          => ['string', 'max:255'],
             'description'   => ['string'],
             'reward_points' => ['numeric'],
+            'reward_gift'   => ['string'],
             'street'        => ['string'],
             'house_number'  => ['string'],
             'city'          => ['string'],

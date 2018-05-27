@@ -15,7 +15,7 @@ use Illuminate\Support\Collection;
  *
  * @package App
  * @property integer                id
- * @property integer|null           points
+ * @property integer                points
  * @property string                 name
  * @property string                 description
  * @property string                 email
