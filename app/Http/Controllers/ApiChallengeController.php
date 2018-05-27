@@ -36,7 +36,7 @@ class ApiChallengeController extends Controller
         $user = auth()->user();
         /** @var Challenge $challenge */
         $data = $request->validated();
-        if (array_key_exists('level_id', $data)) {
+        if (!array_key_exists('level_id', $data)) {
             /** @var Level $level */
             $level = Level::query()->orderBy('points')->first();
             $data['level_id'] = $level->id;

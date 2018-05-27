@@ -56,10 +56,9 @@ class UserTransformer extends TransformerAbstract
      */
     public function includeCurrentLevel(User $user): Item
     {
-        if ($user->points === null) {
+        $current_level = Level::query()->where('points', '<=', $user->points)->orderBy('points', 'desc')->first();
+        if ($current_level === null) {
             $current_level = Level::query()->orderBy('points')->first();
-        } else {
-            $current_level = Level::query()->where('points', '<=', $user->points)->orderBy('points', 'desc')->first();
         }
 
         return $this->item($current_level, new LevelTransformer());

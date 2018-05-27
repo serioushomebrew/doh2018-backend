@@ -32,6 +32,7 @@ class ApiChallengeStoreRequest extends FormRequest
             'name'          => ['required', 'string', 'max:255'],
             'description'   => ['required', 'string'],
             'reward_points' => ['numeric'],
+            'reward_gift'   => ['string'],
             'street'        => ['string'],
             'house_number'  => ['string'],
             'city'          => ['string'],

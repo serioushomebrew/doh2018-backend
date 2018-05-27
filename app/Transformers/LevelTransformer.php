@@ -18,6 +18,7 @@ class LevelTransformer extends TransformerAbstract
         return [
             'id'          => $level->id,
             'points'      => $level->points,
+            'verified'    => $level->points >= 500,
             'name'        => $level->name,
             'description' => $level->description,
             'image'       => $level->image,
