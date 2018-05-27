@@ -44,7 +44,12 @@ class AddressesController extends Controller
         if($data->has('_embedded')){
             $embed = collect($data['_embedded']);
             if($embed->has('addresses')){
-                $address = $embed->get('addresses')[0];
+
+                $address = $embed->get('addresses');
+                if(count($address) < 1)
+                {
+                    return false;
+                }
 
                 $city = $address['city']['label'];
                 $street = $address['street'];
