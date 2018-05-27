@@ -17,9 +17,10 @@ class UserSeeder extends Seeder
             'email' => 'koen@doh.nl',
         ]);
         factory(\App\User::class)->create([
-            'type'  => \App\User::TYPE_USER,
-            'name'  => 'Crone',
-            'email' => 'corne@doh.nl',
+            'type'      => \App\User::TYPE_USER,
+            'name'      => 'Crone',
+            'email'     => 'corne@doh.nl',
+            'api_token' => 'e7BO3PwUXPZrGT3lPJUQKip6hD5tBTIcPG2aO7psGDKLet6SiOBWm9e4PnoGrAo0',
         ]);
         factory(\App\User::class)->create([
             'type'  => \App\User::TYPE_USER,
@@ -40,6 +41,7 @@ class UserSeeder extends Seeder
             'email'     => 'hacker1@doh.nl',
             'latitude'  => 52.065474,
             'longitude' => 4.481966,
+            'api_token' => 'lV475jlAla8aCir45PAtNdPlbG46ih5Ji5bqwzJeFQLU23aXAvYECSYUj7GirgsW',
         ]);
         $hacker->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'Privacy'])->id,
