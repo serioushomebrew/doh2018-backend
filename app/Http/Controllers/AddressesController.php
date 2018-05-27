@@ -46,7 +46,8 @@ class AddressesController extends Controller
             if($embed->has('addresses')){
 
                 $address = $embed->get('addresses');
-                if(count($address) < 1)
+
+                if(empty($address) || empty($address['city']) || empty($address['geo']))
                 {
                     return false;
                 }
