@@ -1,6 +1,7 @@
 <?php
 
 use App\Challenge;
+use App\Http\Controllers\AddressesController;
 use App\Level;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -42,7 +43,12 @@ class ChallengeSeeder extends Seeder
             'level_id'      => Level::query()->orderBy('points', 'desc')->first(),
             'name'          => 'My website is offline',
             'description'   => 'I just bought a new domain',
+            'postal_code'   => '2266AJ',
+            'house_number'  => '2',
+            'latitude'      => 52.0464953,
+            'longitude'     => 4.5145502,
         ]);
+        (new AddressesController())->updateChallenge($challenge);
         $challenge->users()->syncWithoutDetaching([
             $hacker->id => ['accepted_at' => now()],
         ]);
@@ -77,6 +83,8 @@ class ChallengeSeeder extends Seeder
             'latitude'      => 52.0464953,
             'longitude'     => 4.5145502,
             'description'   => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
+            'postal_code'   => '2266AJ',
+            'house_number'  => '2',
         ]);
         $challenge->files()->create([
             'name'        => 'wp-config.php',
@@ -109,9 +117,9 @@ class ChallengeSeeder extends Seeder
             'level_id'      => Level::query()->orderBy('points', 'desc')->first(),
             'name'          => 'My website is under a DDOS attack',
             'city'          => 'Zoetermeer',
-            'latitude'      => 52.0464953,
-            'longitude'     => 4.5145502,
             'description'   => 'My website is now under DDOS attack for 2 days, the url is http://www.isellgoodcookies.com',
+            'postal_code'   => '2266AJ',
+            'house_number'  => '2',
         ]);
         $challenge->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
@@ -143,7 +151,10 @@ class ChallengeSeeder extends Seeder
             'reward_gift'   => '1 year free stack hosting with 10TB of space',
             'name'          => 'All servers are under DDOS attacks',
             'description'   => 'Can anyone help me with this',
+            'postal_code'   => '2181HS',
+            'house_number'  => '36',
         ]);
+        (new AddressesController())->updateChallenge($challenge);
         $challenge->skills()->sync([
             \App\Skill::query()->firstOrCreate(['name' => 'DDOS'])->id,
         ]);
