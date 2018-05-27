@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\AddressesController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('test', function(){
+    (new AddressesController)->checkZipcode('7731BD','3');
+});

@@ -22,10 +22,16 @@ class AddressesController extends Controller
             $embed = collect($data['_embedded']);
             if($embed->has('addresses')){
                 $address = $embed->get('addresses')[0];
+
+                $city = $address['city']['label'];
+                $street = $address['street'];
+
                 $geo = $address['geo']['center']['wgs84']['coordinates'];
                 $long = $geo['0'];
                 $lat = $geo['1'];
                 return [
+                    'city' => $city,
+                    'street' => $street,
                     'lat' => $lat,
                     'long' => $long
                 ];

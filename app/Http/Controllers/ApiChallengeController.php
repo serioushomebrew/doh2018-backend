@@ -32,9 +32,11 @@ class ApiChallengeController extends Controller
         $challenge = $user->challenges()->create($request->all());
 
         $ac = new AddressesController;
-        $latLong = $ac->checkZipcode($challenge->postal_code, $challenge->house_number);
-        $challenge->latitude = $latLong['lat'];
-        $challenge->longitude = $latLong['long'];
+        $addressApi = $ac->checkZipcode($challenge->postal_code, $challenge->house_number);
+        $challenge->latitude = $addressApi['lat'];
+        $challenge->longitude = $addressApi['long'];
+        $challenge->city = $addressApi['city'];
+        $challenge->street = $addressApi['street'];
         $challenge->save();
 
 
