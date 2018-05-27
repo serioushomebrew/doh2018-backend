@@ -14,6 +14,6 @@ class SkillSeeder extends Seeder
         factory(\App\Skill::class)->create(['name' => 'Blockchain']);
         factory(\App\Skill::class)->create(['name' => 'Crypto\'s']);
         factory(\App\Skill::class)->create(['name' => 'Phishing']);
-        factory(\App\Skill::class)->create(['name' => 'Randonsomware']);
+        factory(\App\Skill::class)->create(['name' => 'Ransomware']);
     }
 }
