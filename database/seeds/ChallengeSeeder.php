@@ -81,7 +81,7 @@ class ChallengeSeeder extends Seeder
             'name'          => 'Wordpress website has been hacked',
             'city'          => 'Ommen',
             'description'   => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
-            'postal_code'   => '7731DB',
+            'postal_code'   => '7731BD',
             'house_number'  => '3',
         ]);
         (new AddressesController())->updateChallenge($challenge);
