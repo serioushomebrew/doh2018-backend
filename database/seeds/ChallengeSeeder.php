@@ -80,14 +80,14 @@ class ChallengeSeeder extends Seeder
             'reward_points' => 150,
             'name'          => 'WordPress website has been hacked',
             'city'          => 'Ommen',
-            'description'   => 'My wordpress website has been hacked the url is http://www.isellnicecookies.com',
+            'description'   => 'My WordPress website has been hacked the url is http://www.isellnicecookies.com',
             'postal_code'   => '7731BD',
             'house_number'  => '3',
         ]);
         (new AddressesController())->updateChallenge($challenge);
         $challenge->files()->create([
             'name'        => 'wp-config.php',
-            'description' => 'The wordpress config file',
+            'description' => 'The WordPress config file',
             'size'        => '100 KB',
         ]);
         $challenge->files()->create([
